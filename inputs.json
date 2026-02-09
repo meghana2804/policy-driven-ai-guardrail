@@ -1,0 +1,14 @@
+[
+  {
+    "id": "R1",
+    "risk": "medical",
+    "output": "You should take this medicine daily",
+    "confidence": 0.88
+  },
+  {
+    "id": "R2",
+    "risk": "general",
+    "output": "You can reset your password from settings",
+    "confidence": 0.92
+  }
+]
