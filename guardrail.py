@@ -29,7 +29,6 @@ def decide_action(input_item, policies, default_action):
 
     for policy in matched_policies:
         if input_item.get("confidence", 0) < policy.get("min_confidence", 1):
-            # Confidence not met → choose most restrictive allowed action
             action = max(
                 policy["allowed_actions"],
                 key=lambda a: ACTION_PRIORITY[a]
@@ -38,7 +37,6 @@ def decide_action(input_item, policies, default_action):
                 f'{policy["risk"]} risk; confidence {input_item["confidence"]} < required {policy["min_confidence"]}'
             )
         else:
-            # Confidence met → choose least restrictive allowed action
             action = min(
                 policy["allowed_actions"],
                 key=lambda a: ACTION_PRIORITY[a]
@@ -47,7 +45,6 @@ def decide_action(input_item, policies, default_action):
 
         actions.append(action)
 
-    # If multiple policies matched, choose the most restrictive final action
     final_action = max(actions, key=lambda a: ACTION_PRIORITY[a])
     return final_action, [p["id"] for p in matched_policies], "; ".join(reasons)
 
@@ -63,6 +60,9 @@ def generate_output(action, original_output):
 def main():
     policies_data = load_json("policies.json")
     inputs_data = load_json("inputs.json")
+
+    if policies_data is None or inputs_data is None:
+        raise FileNotFoundError("policies.json or inputs.json not found")
 
     policies = policies_data.get("policies", [])
     default_action = policies_data.get("default_action", "block")
