@@ -1,0 +1,23 @@
+{
+  "policies": [
+    {
+      "id": "P1",
+      "risk": "medical",
+      "allowed_actions": ["escalate"],
+      "min_confidence": 0.95
+    },
+    {
+      "id": "P2",
+      "risk": "financial",
+      "allowed_actions": ["sanitize", "escalate"],
+      "min_confidence": 0.85
+    },
+    {
+      "id": "P3",
+      "risk": "general",
+      "allowed_actions": ["allow"],
+      "min_confidence": 0.7
+    }
+  ],
+  "default_action": "block"
+}
