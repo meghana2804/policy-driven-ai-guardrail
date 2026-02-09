@@ -1,0 +1,20 @@
+[
+  {
+    "id": "R1",
+    "decision": "escalate",
+    "applied_policies": [
+      "P1"
+    ],
+    "final_output": "Sent for human review",
+    "reason": "medical risk; confidence 0.88 < required 0.95"
+  },
+  {
+    "id": "R2",
+    "decision": "allow",
+    "applied_policies": [
+      "P3"
+    ],
+    "final_output": "You can reset your password from settings",
+    "reason": "confidence threshold met"
+  }
+]
